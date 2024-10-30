@@ -1,33 +1,49 @@
 # WebMaster
-WebMaster is a straightforward yet powerful Bash and Python tool that allows users to copy the HTML code of any specified webpage. The script automatically checks for dependencies, installs any missing requirements, and lets users download the HTML of a page with a single command. Users can also customize the name of the file in which the webpage content is saved.
 
-# Features:
-Dependency Automation: Detects and installs Python 3 and the requests module if not already available.
-Custom Terminal Interface: Displays a colorful banner and a unique terminal prompt to enhance the user experience.
-HTML Copy Functionality: Downloads the HTML of a specified URL and lets users specify a custom output filename.
-Clean Exit: Users can exit the script anytime by typing exit.
+## Description
+WebMaster is a simple Bash and Python script that allows users to copy the HTML content from a specified webpage. It checks for the necessary dependencies (Python 3 and the requests module) and installs them if they're missing. This tool is useful for web scraping and HTML retrieval.
 
-# Instructions:
-● Make it Executable: Run 
-```bash 
-chmod +x WebMaster.sh
-```
-● Run the Script: Execute it by running 
-```bash 
-./WebMaster.sh.
-```
-# Requirements:
-● Operating System: Linux (special support for Kali Linux).
+## Features:
+- Dependency checks for Python 3 and the `requests` module.
+- Colorful terminal banner displaying the application name and author.
+- Prompts for a URL and a filename to save the HTML content.
+- Interactive shell prompt with the ability to exit the script.
 
-● Dependencies: Python 3 and the requests module (automatically installed if not already available).
+## Requirements:
+- Bash shell
+- Python 3
+- `requests` module (automatically installed if missing)
 
-# Usage:
-● Clone this repository and grant execution permissions to the script.
+## Installation:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Rip70022/WebMaster.git
+   ```
+  ```bash
+   cd WebMaster
+  ```
+2. Make the script executable:
+   ```bash
+   chmod +x WebMaster.sh
+   ```
+## Usage:
+To run the script, use the following command in your terminal:
+   ```bash
+   ./WebMaster.sh
+   ```
+Follow the prompts:
 
-● Run the script from the terminal and enter the webpage URL.
+1. Enter the URL of the webpage you wish to copy.
+2. Specify a filename to save the HTML (or press Enter to use the default `page.html`).
+3. To exit the script, type `exit`.
 
-● Optionally, choose a filename for the downloaded HTML content.
-
+##Example:
+```bash
+Enter the URL of the webpage (or type 'exit' to quit): https://example.com
+Enter the filename to save the HTML (default: page.html): my_page.html
+ ```
+##Author:
+`WebMaster by Shadow_Sadist/Rip70022`
 
 
 
