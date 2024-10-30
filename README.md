@@ -9,11 +9,14 @@ Clean Exit: Users can exit the script anytime by typing exit.
 
 # Requirements:
 ● Operating System: Linux (special support for Kali Linux).
+
 ● Dependencies: Python 3 and the requests module (automatically installed if not already available).
 
 # Usage:
 ● Clone this repository and grant execution permissions to the script.
+
 ● Run the script from the terminal and enter the webpage URL.
+
 ● Optionally, choose a filename for the downloaded HTML content.
 
 
