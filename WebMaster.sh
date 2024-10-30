@@ -1,76 +1,61 @@
 #!/bin/bash
 
-# Color codes
-RED='\033[1;31m'
-GREEN='\033[1;32m'
-BLUE='\033[1;34m'
-CYAN='\033[1;36m'
+# Check for Python 3
+if ! command -v python3 &> /dev/null
+then
+    echo "Python 3 is not installed. Installing..."
+    sudo apt-get install python3 -y
+fi
+
+# Check for requests module
+if ! python3 -c "import requests" &> /dev/null
+then
+    echo "Requests module is not installed. Installing..."
+    pip3 install requests
+fi
+
+# Define colors for the banner
+GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+RED='\033[0;31m'
 RESET='\033[0m'
 
-# Check if Python 3 is installed
-if ! command -v python3 &> /dev/null; then
-    echo -e "${YELLOW}Python3 is not installed. Installing...${RESET}"
-    sudo apt update && sudo apt install -y python3
-fi
+# Print the banner
+echo -e "${GREEN}██╗    ██╗███████╗██████╗ ███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗"
+echo -e "██║    ██║██╔════╝██╔══██╗████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗"
+echo -e "██║ █╗ ██║█████╗  ██████╔╝██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝"
+echo -e "██║███╗██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗"
+echo -e "╚███╔███╔╝███████╗██████╔╝██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║"
+echo -e " ╚══╝╚══╝ ╚══════╝╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝"
+echo -e "                WebMaster by Shadow_Sadist${RESET}"
 
-# Check if the requests module is installed
-if ! python3 -c "import requests" &> /dev/null; then
-    echo -e "${YELLOW}The 'requests' module is not installed. Installing...${RESET}"
-    python3 -m pip install requests
-fi
+# Start the main loop
+while true; do
+    # Read URL input
+    try {
+        read -p "$(echo -e "${GREEN}Enter the URL of the webpage (or type 'exit' to quit):${RESET}") " url
+        if [[ "$url" == "exit" ]]; then
+            echo -e "${YELLOW}Exiting script. Goodbye!${RESET}"
+            exit 0
+        fi
+    } catch {
+        echo -e "${RED}No input received. Exiting script.${RESET}"
+        exit 1
+    }
 
-# Run the Python script to display the banner and handle HTML copying
-python3 - <<EOF
+    # Prompt for filename
+    read -p "$(echo -e "${GREEN}Enter the filename to save the HTML (default: page.html):${RESET}") " filename
+    filename=${filename:-page.html}
+
+    # Call the Python script to fetch the HTML
+    python3 -c "
 import requests
-import sys
-
-# Color codes for terminal output
-RED = '\033[1;31m'
-GREEN = '\033[1;32m'
-BLUE = '\033[1;34m'
-CYAN = '\033[1;36m'
-YELLOW = '\033[1;33m'
-RESET = '\033[0m'
-
-# Function to display the banner
-def display_banner():
-    print(f"{CYAN}")
-    print("██╗    ██╗███████╗██████╗ ███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗ ")
-    print("██║    ██║██╔════╝██╔══██╗████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗")
-    print("██║ █╗ ██║█████╗  ██████╔╝██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝")
-    print("██║███╗██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗")
-    print("╚███╔███╔╝███████╗██████╔╝██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║")
-    print(" ╚══╝╚══╝ ╚══════╝╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝")
-    print(f"{BLUE}                WebMaster by Shadow_Sadist{RESET}")
-    print()
-
-# Function to copy HTML from a given URL
-def copy_html(url, filename):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        
-        with open(filename, "w", encoding="utf-8") as file:
-            file.write(response.text)
-        
-        print(f"{GREEN}HTML successfully copied to '{filename}'{RESET}")
-    
-    except requests.exceptions.RequestException as e:
-        print(f"{RED}Error retrieving the page:{RESET}", e)
-
-# Display the banner
-display_banner()
-
-# Custom prompt
-while True:
-    url = input(f"{GREEN}Enter the URL of the webpage (or type 'exit' to quit):{RESET} ")
-    if url.lower() == "exit":
-        print(f"{YELLOW}Exiting script. Goodbye!{RESET}")
-        sys.exit(0)
-
-    filename = input(f"{GREEN}Enter the filename to save the HTML (default: page.html):{RESET} ")
-    filename = filename if filename else "page.html"  # Use "page.html" as default if no name is provided
-
-    copy_html(url, filename)
-EOF
+try:
+    response = requests.get('$url')
+    with open('$filename', 'w') as f:
+        f.write(response.text)
+    print('HTML content saved to', '$filename')
+except Exception as e:
+    print('Failed to fetch the URL:', e)
+"
+done
