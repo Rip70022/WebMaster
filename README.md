@@ -10,7 +10,7 @@ Clean Exit: Users can exit the script anytime by typing exit.
 # Instructions:
 ● Make it Executable: Run 
 ```bash 
-chmod +x WebMaster.sh to make the script executable.
+chmod +x WebMaster.sh
 ```
 ● Run the Script: Execute it by running 
 ```bash 
