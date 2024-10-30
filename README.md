@@ -37,13 +37,13 @@ Follow the prompts:
 2. Specify a filename to save the HTML (or press Enter to use the default `page.html`).
 3. To exit the script, type `exit`.
 
-#Example:
+# Example:
 
 ```bash
 Enter the URL of the webpage (or type 'exit' to quit): https://example.com
 Enter the filename to save the HTML (default: page.html): my_page.html
  ```
-#Author:
+# Author:
 
 `WebMaster by Shadow_Sadist/Rip70022`
 
