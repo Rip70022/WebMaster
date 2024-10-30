@@ -7,6 +7,15 @@ Custom Terminal Interface: Displays a colorful banner and a unique terminal prom
 HTML Copy Functionality: Downloads the HTML of a specified URL and lets users specify a custom output filename.
 Clean Exit: Users can exit the script anytime by typing exit.
 
+# Instructions:
+● Make it Executable: Run 
+```bash 
+chmod +x WebMaster.sh to make the script executable.
+```
+● Run the Script: Execute it by running 
+```bash 
+./WebMaster.sh.
+```
 # Requirements:
 ● Operating System: Linux (special support for Kali Linux).
 
