@@ -1,4 +1,5 @@
 #!/bin/bash
+#MORE SCRIPTS >>>  https://github.com/Rip70022
 
 # Check for Python 3
 if ! command -v python3 &> /dev/null
@@ -28,19 +29,19 @@ echo -e "██║ █╗ ██║█████╗  ██████╔╝�
 echo -e "██║███╗██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗"
 echo -e "╚███╔███╔╝███████╗██████╔╝██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║"
 echo -e " ╚══╝╚══╝ ╚══════╝╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝"
-echo -e "                ${YELLOW}WebMaster by Shadow_Sadist${RESET}"
+echo -e "                ${YELLOW}> WebMaster by Shadow_Sadist <${RESET}"
 
 # Start the main loop
 while true; do
     # Read URL input
-    read -p "$(echo -e "${BLUE}Enter the URL of the webpage (or type 'exit' to quit):${RESET}") " url
+    read -p "$(echo -e "${BLUE}[!] Enter the URL of the webpage (or type 'exit' to quit):${RESET}") " url
     if [[ "$url" == "exit" ]]; then
-        echo -e "${YELLOW}Exiting script. Goodbye!${RESET}"
+        echo -e "${YELLOW}[X] Exiting script. Goodbye!${RESET}"
         exit 0
     fi
 
     # Prompt for filename
-    read -p "$(echo -e "${BLUE}Enter the filename to save the HTML (default: page.html):${RESET}") " filename
+    read -p "$(echo -e "${BLUE}[S] Enter the filename to save the HTML (default: page.html):${RESET}") " filename
     filename=${filename:-page.html}
 
     # Call the Python script to fetch the HTML
@@ -53,6 +54,6 @@ try:
         f.write(response.text)
     print('HTML content saved to', '$filename')
 except Exception as e:
-    print('Failed to fetch the URL:', e)
+    print('[E] Failed to fetch the URL:', e)
 "
 done
