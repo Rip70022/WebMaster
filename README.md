@@ -1,5 +1,5 @@
 # WebMaster
-
+![WEB Master](https://github.com/Rip70022/WebMaster/blob/main/WEB%20MASTER.jpeg?raw=true)
 # Description
 WebMaster is a simple Bash and Python script that allows users to copy the HTML content from a specified webpage. It checks for the necessary dependencies (Python 3 and the requests module) and installs them if they're missing. This tool is useful for web scraping and HTML retrieval.
 
